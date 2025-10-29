@@ -27,11 +27,18 @@ void print_first_last(int *arr, int n, int show_count) {
         sc = show_count;
     else
         sc = n;
-    printf("first %d: ", sc);
-    for (int i = 0; i < sc; ++i) printf("%d ", arr[i]);
-    printf("\nlast %d: ", sc);
-    for (int i = n - sc; i < n; ++i) printf("%d ", arr[i]);
-    printf("\n");
+    // I made it so if the array is 32 integers it prints the whole array as another sort check
+    if (n == 32) {
+        for (int i = 0; i < n; ++i) printf("%d ", arr[i]);
+        printf("\n");
+    }
+    else {
+        printf("first %d: ", sc);
+        for (int i = 0; i < sc; ++i) printf("%d ", arr[i]);
+        printf("\nlast %d: ", sc);
+        for (int i = n - sc; i < n; ++i) printf("%d ", arr[i]);
+        printf("\n");
+    }
 }
 
 // function to help with integer comparison. It gets used with qsort function
