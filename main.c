@@ -19,7 +19,7 @@ void generate_random_array(int *arr, int n, int max_val) {
         arr[i] = rand() % max_val;
 }
 // function to check the sorting is actually happening without printing the whole array
-// can probably remove for final project submission
+// I consulted AI for this idea so I could check the sorting but not have to print the whole 131072 element array
 void print_first_last(int *arr, int n, int show_count) {
     if (n <= 0) return;
     int sc;
@@ -55,6 +55,7 @@ typedef struct {
 // size in bytes of each element in the array, and a pointer to comparison function. this is the compare_ints function from above
 void *thread_sort(void *arg) {
     ThreadArg *a = (ThreadArg *)arg;
+    // I consulted AI to help me with these arguments. I put them in wrong at first.
     qsort(a->data + a->start, a->end - a->start, sizeof(int), compare_ints);
     return NULL;
 }
@@ -73,6 +74,7 @@ void merge_arrays(int *arr, int *chunk_sizes, int num_chunks) {
     int *offset = malloc(num_chunks * sizeof(int));
 
     // figuring out where the offsets for each chunk should be
+    // AI helped me clear up the logic for this offset part
     offset[0] = 0;
     for (int i = 1; i < num_chunks; ++i)
         offset[i] = offset[i - 1] + chunk_sizes[i - 1];
@@ -105,7 +107,7 @@ void merge_arrays(int *arr, int *chunk_sizes, int num_chunks) {
     free(offset);
 }
 
-// driver for threads. splits array into chunks, starts one thread per chunk, waits for threads to finish,
+// Threads- splits array into chunks, starts one thread per chunk, waits for threads to finish,
 // merges the sorted arrays back into a single array, measures clock time and prints in seconds
 void run_sort_threads(int *arr, int n, int num_threads) {
     pthread_t threads[num_threads];
@@ -142,6 +144,7 @@ void run_sort_processes(int *arr, int n, int num_process) {
     int chunk_sizes[num_process];
 
     // creates shared memory space not tied to a file that can read and write and is shared between processes
+    // I consulted AI for these arguments because I wasn't sure which arguments needed to be included
     int *shared = mmap(NULL, n * sizeof(int),
                        PROT_READ | PROT_WRITE,
                        MAP_SHARED | MAP_ANONYMOUS, -1, 0);
@@ -319,10 +322,12 @@ int main() {
     //random numbers will be different every time
     srand(time(NULL));
 
-    //I'm commenting out 131073. to get the bigger number just get rid of 32;//
+    //I'm commenting out 131072. to get the bigger number just get rid of 32;//
+    //<<<<<<<<THIS LINE DELETE 32; AND UNCOMMENT 131072 TO RUN BIGGER ARRAY>>>>>>>>>>>
     int n = 32;//131072;
     int *arr = malloc(n * sizeof(int));
     //making the array of numbers again I'm commenting out the info for the bigger one just delete 100); for bigger array
+    //<<<<<<<<<<THIS LINE DELETE 100); and uncomment 1000000 to run bigger array>>>>>>>>>>>> 
     generate_random_array(arr, n, 100);//1000000);
 
 
