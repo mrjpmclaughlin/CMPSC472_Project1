@@ -331,11 +331,11 @@ int main() {
 
     //I'm commenting out 131072. to get the bigger number just get rid of 32;//
     //<<<<<<<<THIS LINE DELETE 32; AND UNCOMMENT 131072 TO RUN BIGGER ARRAY>>>>>>>>>>>
-    int n = 32;//131072;
+    int n = 32; //131072;
     int *arr = malloc(n * sizeof(int));
     //making the array of numbers again I'm commenting out the info for the bigger one just delete 100); for bigger array
     //<<<<<<<<<<THIS LINE DELETE 100); and uncomment 1000000 to run bigger array>>>>>>>>>>>> 
-    generate_random_array(arr, n, 100);//1000000);
+    generate_random_array(arr, n, 100); //1000000);
 
 
     printf("\n Part 1: Parallel Sorting (MapReduce Style) \n");
